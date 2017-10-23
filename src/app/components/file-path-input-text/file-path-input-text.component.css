@@ -1,0 +1,29 @@
+main {
+  background-color: #bfe6ff;
+  padding: 10px;
+}
+
+main input {
+  border-style: none;
+  padding: 10px;
+  width: 100%;
+  background-color: #e0f3ff;
+  transition: background-color 100ms;
+  box-sizing: border-box;
+}
+
+main input:hover {
+  background-color: #fcfeff;
+  transition: background-color 100ms;
+}
+
+main input:focus {
+  background-color: #fcfeff;
+  transition: background-color 100ms;
+}
+
+main span {
+  color: #ff0606;
+  display: block;
+  padding: 5px;
+}

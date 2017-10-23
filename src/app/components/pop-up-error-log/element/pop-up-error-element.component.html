@@ -1,0 +1,4 @@
+<main #main [class.show]="_wrapper.show" [class.hide]="!_wrapper.show">
+  <div class="header"><i class="fa fa-close" (click)="_onCloseInnerClick()"></i></div>
+  <div class="message" [innerHTML]="_wrapper.text"></div>
+</main>

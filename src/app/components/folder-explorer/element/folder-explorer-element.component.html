@@ -1,0 +1,9 @@
+<main [class.folder-explorer-file]="isFile()" [class.folder-explorer-folder]="!isFile()">
+  <div class="shadow">
+    <div></div>
+  </div>
+  <div class="content">
+    <i class="fa" [class.fa-file]="isFile()" [class.fa-folder]="!isFile()"></i>
+    <span [innerHTML]="folderToView.name"></span>
+  </div>
+</main>

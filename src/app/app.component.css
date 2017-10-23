@@ -1,0 +1,32 @@
+#top-container {
+	max-height: 100px;
+	height: 15%;
+	padding: 10px;
+}
+
+#bottom-container {
+	height: 85%;
+	display: flex;
+	padding: 10px;
+}
+
+#bottom-left-container {
+	min-width: 300px;
+	width: 20%;
+	height: 100%;
+	padding: 10px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+#bottom-right-container {
+	width: 80%;
+  overflow: hidden;
+  padding: 0px;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+  height: 100%;
+}

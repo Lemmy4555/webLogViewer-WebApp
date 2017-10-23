@@ -1,0 +1,28 @@
+main {
+  display: none;
+  padding: 0px;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+main.visible{
+  display: table;
+}
+
+main .message{
+  text-align: center;
+  margin: auto;
+  background-color: #181818;
+  display: table;
+  padding: 20px 20px 20px 20px;
+  color: #fff;
+  box-shadow: 1px 1px 4px 2px #aeaeae;
+  pointer-events: auto;
+}
+
+main .message-container{
+  display: table-cell;
+  vertical-align: middle;
+}

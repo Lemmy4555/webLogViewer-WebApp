@@ -1,0 +1,26 @@
+:host {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  z-index: 1;
+  top: 0px;
+  pointer-events: none;
+}
+
+:host > div {
+  height: 100%;
+  width: 30%;
+  float: right;
+  min-width: 500px;
+  max-width: 600px;
+}
+
+:host > div > ul {
+  list-style-type: none;
+}
+
+:host > div > ul > li {
+  margin: 20px 0px 20px 0px;
+  pointer-events: auto;
+}

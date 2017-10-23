@@ -1,0 +1,52 @@
+main {
+  --loader-width: 3px;
+  --loader-width-mult: 2;
+  --loader-size: 50px;
+  display: none;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+main.visible {
+  display: table;
+}
+
+main .loader-area {
+  width: 50px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+main .loader-area > div {
+  margin: auto;
+  width: var(--loader-size);
+  height: var(--loader-size);
+}
+
+main .loader-area > div > div {
+  border-radius: 50%;
+}
+
+main .loader-area .loader{
+  position: relative;
+  top: calc((var(--loader-size) / 2) - (var(--loader-width) / 2));
+  border: var(--loader-width) solid rgba(243, 243, 243, 0.76);
+  width: var(--loader-size);
+  height: var(--loader-size);
+}
+
+main .loader-area .loader-anim{
+  position: relative;
+  top: calc((var(--loader-size) / 2 * -1) - (var(--loader-width) * var(--loader-width-mult) / 2));
+  border: calc(var(--loader-width) * var(--loader-width-mult)) solid rgba(255, 255, 255, 0);
+  border-top: calc(var(--loader-width) * var(--loader-width-mult)) solid #414141;
+  animation: spin 600ms linear infinite;
+  width: calc(var(--loader-size) + (var(--loader-width) * var(--loader-width-mult) / 2));
+  height: calc(var(--loader-size) + (var(--loader-width) * var(--loader-width-mult) / 2));
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+}

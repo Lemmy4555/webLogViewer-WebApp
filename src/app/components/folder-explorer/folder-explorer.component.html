@@ -1,0 +1,36 @@
+<main>
+  <div class="loader-wrapper">
+    <l45-loader></l45-loader>
+  </div>
+  <div class="folder-explorer-wrapper">
+    <div class="toolbar">
+      <div #goHome (click)="onHomeButtonClick()" class="btn go-home">
+        <i class="fa fa-home" aria-hidden="true"></i>
+      </div>
+      <div #folderUp class="btn folder-up" [attr.disabled]="!isFolderUpEnabled" (click)="onFolderExplorerUpClick()">
+        <div class="table">
+          <div class="cell">
+            <div class="arrow-up"></div>
+          </div>
+          <div class="cell text">
+            <a id="folder-up-link">
+              Cartella superiore
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="folder-explorer-viewer">
+      <ul #folderExplorerList>
+        <li *ngFor="let folderToView of foldersToView?.elements">
+          <folder-explorer-element [folderToView]="folderToView" 
+            (click)="onFolderExplorerElementClickInner(folderToView)">
+          </folder-explorer-element>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="message-wrapper">
+    <messages-box [ngClass]="{'visible': isMessageVisible}"></messages-box>
+  </div>
+</main>

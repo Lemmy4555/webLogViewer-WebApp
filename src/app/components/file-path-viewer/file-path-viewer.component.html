@@ -1,0 +1,9 @@
+<main>
+  <ul>
+    <li *ngFor="let folder of _path; let i = index">
+      <a (click)="onFolderSelectedInner(i)">
+        <span [innerHTML]="folder"></span>
+      </a>
+    </li>
+  </ul>
+</main>

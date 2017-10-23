@@ -1,0 +1,19 @@
+<svg 
+  viewBox="0 0 50 50">
+  
+  <path d="M 5 45 L 20 13 L 34 45 M 12 30 L 30 30" fill="none" transform="rotate(0 25 25)" stroke-width="7px">
+  </path>
+  
+  <path d="M 43 3 L 43 47" fill="none" transform="rotate(0 25 25)" stroke-width="7px">
+    <animate id="r11" begin="0;r14.end" attributeName="opacity" from="0" to="1" dur="1ms"/>
+    <animate id="r12" begin="r11.end" attributeName="opacity" from="1" to="1" dur="0.7s"/>
+    <animate id="r13" begin="r12.end" attributeName="opacity" from="1" to="0" dur="1ms"/>
+    <animate id="r14" begin="r13.end" attributeName="opacity" from="0" to="0" dur="0.7s"/>
+  </path>
+  <path d="M 43 3 L 43 47" fill="none" transform="rotate(0 25 25)" stroke-width="7px" stroke="#000">
+    <animate id="r11" begin="0;r14.end" attributeName="stroke-opacity" from="0" to="0.3" dur="1ms"/>
+    <animate id="r12" begin="r11.end" attributeName="stroke-opacity" from="0.3" to="0.3" dur="0.7s"/>
+    <animate id="r13" begin="r12.end" attributeName="stroke-opacity" from="0.3" to="0" dur="1ms"/>
+    <animate id="r14" begin="r13.end" attributeName="stroke-opacity" from="0" to="0" dur="0.7s"/>
+  </path>
+</svg>

@@ -1,0 +1,49 @@
+/* this file will be extracted to main dist folder and is imported in index.html */
+/* This file is for setting global styles  */
+@import 'variables';
+
+body {
+	overflow: hidden;
+	font-family: arial;
+	margin: 0px;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+#error {
+	color: red;
+	font-weight: bold;
+	font-style: normal;
+	word-wrap: break-word;
+}
+
+web-log-viewer * {
+	box-sizing: border-box;
+}
+
+#logs {
+  text-align: left;
+  display: block;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.arrow-up {
+  border-left: 6px solid rgba(0, 0, 0, 0);
+  border-right: 6px solid transparent;
+  border-bottom: 8px solid #000;
+  background-color: rgba(0, 0, 0, 0);
+  float: left;
+  padding: 0px;
+  margin: 5px;
+}
+
+#left-components {
+  padding: 10px;
+	display: flex;
+	padding: 0px;
+	flex-direction: column;
+	height: 100%;
+	border-right: 7px groove #2392d9;
+}

@@ -1,0 +1,21 @@
+<main>
+  <ul>
+    <li *ngFor="let notificationToShow of notificationsToShow">
+      <div [ngSwitch]="notificationToShow">
+        <ok-svg *ngSwitchCase="NOTIFICATIONS_CODES.OK">
+        </ok-svg>
+        <write-svg *ngSwitchCase="NOTIFICATIONS_CODES.WRITE">
+        </write-svg>
+        <sync-svg *ngSwitchCase="NOTIFICATIONS_CODES.SYNC">
+        </sync-svg>
+        <download-svg *ngSwitchCase="NOTIFICATIONS_CODES.DOWNLOAD">
+        </download-svg>
+        <file-svg *ngSwitchCase="NOTIFICATIONS_CODES.FILE">
+        </file-svg>
+        <span *ngSwitchDefault>
+        ...
+        </span>
+      </div>
+    </li>
+  </ul>
+</main>

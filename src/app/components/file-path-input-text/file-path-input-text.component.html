@@ -1,0 +1,5 @@
+<main>
+  <input type="text" #input placeholder="Inserisci il percorso in cui navigare..." 
+    (keyup)="onKeyUp($event, input.value)" />
+  <span *ngIf="error" [innerText]="error"></span>
+</main>
