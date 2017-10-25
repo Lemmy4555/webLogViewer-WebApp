@@ -43,7 +43,7 @@ export class DbService {
   /**
    * Si collega al database e chiama la callback in input
    */
-  public connect(callback: () => void): DbService {
+  public connect(callback: () => void) {
     if (this.isConnected) {
       this.logger.warn("La connessione al db e gia stata effettuata");
       return;
@@ -54,21 +54,16 @@ export class DbService {
     }
     //Tentativo di connessione al DB
     if (!Constants.USE_CACHE_DB) {
-      var DBDeleteRequest = window.indexedDB.deleteDatabase("toDoList");
-
+      var DBDeleteRequest = window.indexedDB.deleteDatabase(this.dbName);
+    
       DBDeleteRequest.onerror = function(event) {
         console.log("Error deleting database.");
       };
       
       DBDeleteRequest.onsuccess = function(event) {
         console.log("Database deleted successfully");
-          
-        console.log(event.result); // should be undefined
       };
-        this.db.transaction([DbFilesConstants.tableName], "readwrite")
-          .objectStore(DbFilesConstants.tableName).clear();
-        this.logger.error("Il db e stato pulito");
-      }
+    }
     var request = window.indexedDB.open(this.dbName);
     request.onerror = (event) => {
       this.logger.error("Errore durante la connessione all\'indexedDB. Nome del db: %s", this.dbName);

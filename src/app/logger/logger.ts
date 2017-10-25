@@ -91,7 +91,7 @@ export class Logger {
     let reversed = this.reverseString(message);
     let regex = /\}\{(?!(\\))/g
     let i = 0;
-    params.forEach(function (e) {
+    params.forEach((e) => {
       let match = regex.exec(reversed);
       if (!match) {
         return;
@@ -103,7 +103,7 @@ export class Logger {
     return this.reverseString(reversed);
   }
 
-  private reverseString(str: string) {
+  private reverseString(str: string | String) {
     // Step 1. Use the split() method to return a new array
     let splitString = str.split(""); // let splitString = "hello".split("");
     // ["h", "e", "l", "l", "o"]

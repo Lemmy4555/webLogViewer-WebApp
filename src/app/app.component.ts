@@ -73,6 +73,7 @@ export class AppComponent implements OnInit {
     this.filePathViewer.onFolderSelected((path: string) => this.folderExplorerHandler.navigateTo(path));
 
     //Recupera dal DB l'ultimo file aperto.
+    debugger;
     this.dbService.connect(() => {
       if (CacheHelper.getLastOpenedFile()) {
         this.fileViewerHandler.openNewFile(CacheHelper.getLastOpenedFile());
