@@ -72,24 +72,6 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          'to-string-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              importer: jsonImporter,
-            },
-          }],
-        exclude: [helpers.root('src', 'styles')]
-      },
-      {
-        test: /\.scss$/,
-        use: [
           'style-loader',
           {
             loader: 'css-loader',
