@@ -1,0 +1,14 @@
+<main class="secondary-color">
+  <div id="top">
+    <div class="btn" id="close" (click)="close()">
+      <i class="fa fa-close" aria-hidden="true"></i>
+    </div> 
+    <span>File History</span>
+  </div>
+  <ul>
+    <li *ngFor="let file of history" (click)="openFile(file.name, file.path)">
+        <span class="file-name">{{ file.name }}</span>
+        <span class="file-path">{{ file.path }}</span>
+    </li>
+  </ul>
+</main>

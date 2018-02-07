@@ -1,19 +1,35 @@
-<main>
-  <div id="top-container">
-    <label>Web Log Viewer</label>
-    <file-path-viewer></file-path-viewer>
+<main [ngClass]="{'right-content-open': isRightContentOpen}">
+  <div class="secondary-color" id="title-bar">
+    <span>Web Log Viewer</span>
+    <div class="btn" (click)="openRightContent()">
+      <i class="fa fa-clock-o" aria-hidden="true"></i>
+    </div>
   </div>
-  <div id="bottom-container">
-    <div id="bottom-left-container">
-      <div id="left-components">
-        <file-path-input-text></file-path-input-text>
-        <folder-explorer></folder-explorer>
+  <div id="main-content">
+    <div id="top-container">
+      <file-path-viewer></file-path-viewer>
+    </div>
+    <div id="bottom-container">
+      <div id="bottom-left-container">
+        <div id="left-components">
+          <file-path-input-text></file-path-input-text>
+          <folder-explorer
+            (onOpenFile)="fileViewerHandler.openNewFile($event)"
+            (onOpenFolder)="this.filePathViewer.path = $event">
+          </folder-explorer>
+        </div>
+      </div>
+      <div id="bottom-right-container">
+        <file-viewer-toolbar (onRequestFileOpen)="fileViewerHandler.openNewFile($event.path, $event.from, $event.to)"></file-viewer-toolbar>
+        <file-viewer></file-viewer>
       </div>
     </div>
-    <div id="bottom-right-container">
-      <background-notifications></background-notifications>
-      <file-viewer></file-viewer>
-    </div>
+  </div>
+  <div id="right-content">
+    <file-history 
+      (onFileOpen)="fileViewerHandler.openNewFile($event)" 
+      (onClose)="closeRightContent()">
+    </file-history>
   </div>
   <pop-up-error-log></pop-up-error-log>
 </main>

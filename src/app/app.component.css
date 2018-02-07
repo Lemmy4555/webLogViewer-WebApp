@@ -1,32 +1,96 @@
-#top-container {
+main {
+	--title-bar-height: 52px;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+main.right-content-open #main-content {
+	width: calc(100% - 280px);
+}
+
+main.right-content-open #right-content {
+	left: calc(100% - 280px);
+}
+
+main #title-bar {
+	height: var(--title-bar-height);
+}
+
+main #title-bar span {
+	float: left;
+	padding: 17px;
+}
+
+main #title-bar div {
+	float: right;
+	padding: 5px;
+	width: 32px;
+	height: 32px;
+	margin: 10px;
+}
+
+main #main-content {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	transition: width 0.2s;
+	height: calc(100% - var(--title-bar-height));
+}
+
+main #right-content {
+	position: absolute;
+	width: 280px;
+	left: 100%;
+	transition: left 0.2s;
+	height: 100%;
+}
+
+main #main-content #top-container {
 	max-height: 100px;
-	height: 15%;
+	flex-grow: 1.5;
 	padding: 10px;
 }
 
-#bottom-container {
-	height: 85%;
+main #main-content #bottom-container {
+	flex-grow: 8.5;
 	display: flex;
 	padding: 10px;
 }
 
-#bottom-left-container {
-	min-width: 300px;
-	width: 20%;
-	height: 100%;
+main #main-content #bottom-left-container {
+	flex-basis: 300px;
+	flex-grow: 1;
 	padding: 10px;
 	padding-top: 0px;
 	padding-bottom: 0px;
+	min-height: 300px;
+	min-width: 300px;
 }
 
-#bottom-right-container {
-	width: 80%;
+main #main-content #bottom-right-container {
+	flex-grow: 8;
   overflow: hidden;
   padding: 0px;
 	display: flex;
 	flex-direction: column;
+	min-width: 682px;
+	min-height: 300px;
 }
 
-main {
-  height: 100%;
+main #main-content #left-components {
+  padding: 10px;
+	display: flex;
+	padding: 0px;
+	flex-direction: column;
+	height: 100%;
+	border-right: 7px groove #2392d9;
 }
+
+#logs {
+	text-align: left;
+	display: block;
+	overflow-y: auto;
+	height: 100%;
+}
+

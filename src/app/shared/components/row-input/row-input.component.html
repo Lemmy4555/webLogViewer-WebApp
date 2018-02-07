@@ -1,0 +1,30 @@
+<main>
+  <div>
+    <div>
+      From line: 
+    </div>
+    <div>
+      <div>
+        <input type="number" #inputFrom
+          (keyup.enter)="requestFileOpen()" 
+          (keypress)="inputFilter($event, from)"
+          [(ngModel)]="from"
+          (keydown)="error = null"
+          (focus)="focusToEndOfValue(inputFrom, from)"
+          min="0"
+        />
+        To: 
+        <input type="number" #inputTo
+          (keyup.enter)="requestFileOpen()" 
+          (keypress)="inputFilter($event, to)"
+          [(ngModel)]="to"
+          (keydown)="error = null"
+          (focus)="focusToEndOfValue(inputTo, to)"
+          min="0"
+        />
+
+      </div>
+      <span class="error">{{ error }}</span>
+    </div>
+  </div>
+</main>

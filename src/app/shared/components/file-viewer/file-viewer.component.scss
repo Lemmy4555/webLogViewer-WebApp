@@ -1,0 +1,60 @@
+@import "file-viewer.component.json";
+
+:host {
+  flex-grow: 1;
+  display: flex;
+  --wrapper-size: 100%;
+}
+
+main {
+  --message-box-height: 100%;
+  width: 100%;
+}
+
+main > div{
+	overflow: hidden;
+	height: 100%;
+	padding: 0px;
+}
+
+main .loader-wrapper {
+  position: relative;
+}
+
+main .loader-wrapper > [is="l45-loader"]{
+  position: relative;
+  height: var(--wrapper-size);
+  width: 100%;
+}
+
+main .content-wrapper {
+  position: relative;
+	top: calc(-1 * var(--wrapper-size));
+  overflow-y: auto;
+  width: var(--message-box-height);
+  height: 100%;
+  border: 7px groove #2392d9;
+	border-left-style: ridge;
+	border-top-style: ridge;
+	padding: 10px;
+}
+
+main .message-wrapper {
+  position: relative;
+  height: var(--message-box-height);
+  top: calc(-2 * var(--message-box-height));
+  width: 100%;
+  pointer-events: none;
+}
+
+main .message-wrapper > [is="messages-box"] {
+  position: relative;
+  height: var(--message-box-height);
+  width: 100%;
+}
+
+main code {
+	display: block;
+  font-size: $font-size;
+  line-height: $line-height;
+}

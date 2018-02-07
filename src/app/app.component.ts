@@ -1,10 +1,9 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
 
 import { FolderExplorer } from 'Components/folder-explorer/folder-explorer.component';
-import { FolderExplorerHandler } from 'Handlers/folder-explorer.handler';
 import { FilePathInputText } from 'Components/file-path-input-text/file-path-input-text.component';
 import { PopUpErrorLog } from 'Components/pop-up-error-log/pop-up-error.component';
-import { ApiService } from 'Services/api/api.service';
+import { ApiProxyService } from 'Services/api/api-proxy.service';
 import { FileViewerHandler } from 'Handlers/file-viewer.handler';
 import { DbService } from 'Services/db/db.service';
 import { FileViewer } from 'Components/file-viewer/file-viewer.component';
@@ -12,6 +11,7 @@ import { CacheHelper } from 'Helpers/cache.helper';
 import { Logger } from 'Logger/logger';
 import { FilePathViewer } from 'Components/file-path-viewer/file-path-viewer.component';
 import { BackgroundNotifications } from 'Components/background-notifications/background-notifications.component';
+import { FileViewerToolbar } from 'Components/file-viewer-toolbar/file-viewer-toolbar.component';
 
 @Component({
   selector: "web-log-viewer",
@@ -31,49 +31,44 @@ export class AppComponent implements OnInit {
   private fileViewer: FileViewer;
   @ViewChild(FilePathViewer)
   private filePathViewer: FilePathViewer;
-  @ViewChild(BackgroundNotifications)
-  private backgroundNotifications: BackgroundNotifications;
+  @ViewChild(FileViewerToolbar)
+  private fileViewerToolbar: FileViewerToolbar;
 
-  private apiService: ApiService;
+  private apiProxyService: ApiProxyService;
   private dbService: DbService;
 
-  private folderExplorerHandler: FolderExplorerHandler;
   private fileViewerHandler: FileViewerHandler;
 
-  constructor(apiService: ApiService, dbService: DbService) {
-    this.apiService = apiService;
+  private elementRef: ElementRef;
+
+  private isRightContentOpen: boolean = false;
+
+  constructor(elementRef: ElementRef, apiProxyService: ApiProxyService, dbService: DbService) {
+    this.apiProxyService = apiProxyService;
     this.dbService = dbService;
+    this.elementRef = elementRef;
   }
 
   public ngOnInit() {
     this.logger.debug("Initializing app");
-    this.folderExplorerHandler = new FolderExplorerHandler(this.folderExplorer, this.apiService);
-    this.fileViewerHandler = new FileViewerHandler(this.fileViewer, this.apiService, this.dbService);
+    this.fileViewerHandler = new FileViewerHandler(this.fileViewer, this.apiProxyService, this.dbService);
 
     this.fileViewerHandler
-      .onOpenNewFileError((message: string) => { this.fileViewer.showMessage(message); })
+      .onOpenNewFileError((message: string) => { this.fileViewerToolbar.backgroundNotifications.hideAll(); this.fileViewer.showMessage(message); })
       .onUnhandledError((message: string) => { this.popUpErrorLog.showLog(message); })
-      .onSyncronizationStarted(() => { this.backgroundNotifications.showSyncNotification(); })
-      .onSyncronizationFinished(() => { this.backgroundNotifications.hideSyncNotification(); })
-      .onFileTailStarted(() => { this.backgroundNotifications.showDownloadNotification(); })
-      .onFileTailed(() => { this.backgroundNotifications.hideDownloadNotification(); })
-      .onWriteJobStart(() => { this.backgroundNotifications.showWriteNotification(); })
-      .onWriteJobEnd(() => { this.backgroundNotifications.showOkNotification(); })
-      .onFullFileDownloadStarted(() => { this.backgroundNotifications.showFileNotification(); })
-      .onFullFileDownloaded(() => { this.backgroundNotifications.hideFileNotification(); });
+      .onSyncronizationStarted(() => { this.fileViewerToolbar.backgroundNotifications.showSyncNotification(); })
+      .onSyncronizationFinished(() => { this.fileViewerToolbar.backgroundNotifications.hideSyncNotification(); })
+      .onFileTailStarted(() => { this.fileViewerToolbar.backgroundNotifications.showDownloadNotification(); })
+      .onFileTailed(() => { this.fileViewerToolbar.backgroundNotifications.hideDownloadNotification(); })
+      .onWriteJobStart(() => { this.fileViewerToolbar.backgroundNotifications.showWriteNotification(); })
+      .onWriteJobEnd(() => { this.fileViewerToolbar.backgroundNotifications.showOkNotification(); })
+      .onFullFileDownloadStarted(() => { this.fileViewerToolbar.backgroundNotifications.showFileNotification(); })
+      .onFullFileDownloaded(() => { this.fileViewerToolbar.backgroundNotifications.hideFileNotification(); });
 
-    this.folderExplorerHandler
-      .onApiCallError((message) => {
-        this.folderExplorer.showMessage(message);
-      })
-      .onOpenFile((fileName: string) => this.fileViewerHandler.openNewFile(fileName))
-      .onOpenFolder((path: Array<string>) => { this.filePathViewer.path = path });
-
-    this.filePathInputText.onPathInsert((path: string) => this.folderExplorerHandler.navigateTo(path));
-    this.filePathViewer.onFolderSelected((path: string) => this.folderExplorerHandler.navigateTo(path));
+    this.filePathInputText.onPathInsert((path: string) => this.folderExplorer.navigateTo(path));
+    this.filePathViewer.onFolderSelected((path: string) => this.folderExplorer.navigateTo(path));
 
     //Recupera dal DB l'ultimo file aperto.
-    debugger;
     this.dbService.connect(() => {
       if (CacheHelper.getLastOpenedFile()) {
         this.fileViewerHandler.openNewFile(CacheHelper.getLastOpenedFile());
@@ -83,11 +78,20 @@ export class AppComponent implements OnInit {
       }
 
       if (CacheHelper.getLastOpenedFolder()) {
-        this.folderExplorerHandler.navigateTo(CacheHelper.getLastOpenedFolder());
+        this.folderExplorer.navigateTo(CacheHelper.getLastOpenedFolder());
       } else {
-        this.folderExplorerHandler.navigateToHomeDir();
+        this.folderExplorer.navigateToHomeDir();
       }
     });
     this.logger.debug("App initialized");
   }
+
+  openRightContent() {
+    this.isRightContentOpen = true;
+  }
+
+  closeRightContent() {
+    this.isRightContentOpen = false;
+  }
+
 }

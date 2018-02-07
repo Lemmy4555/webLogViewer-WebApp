@@ -1,6 +1,8 @@
 /* this file will be extracted to main dist folder and is imported in index.html */
 /* This file is for setting global styles  */
+@import "global-vars";
 @import 'variables';
+@import "font";
 
 body {
 	overflow: hidden;
@@ -11,8 +13,8 @@ body {
   position: fixed;
 }
 
-#error {
-	color: red;
+.error {
+	color: var(--error-color);
 	font-weight: bold;
 	font-style: normal;
 	word-wrap: break-word;
@@ -22,28 +24,77 @@ web-log-viewer * {
 	box-sizing: border-box;
 }
 
-#logs {
-  text-align: left;
-  display: block;
-  overflow-y: auto;
-  height: 100%;
-}
-
-.arrow-up {
-  border-left: 6px solid rgba(0, 0, 0, 0);
-  border-right: 6px solid transparent;
-  border-bottom: 8px solid #000;
-  background-color: rgba(0, 0, 0, 0);
-  float: left;
-  padding: 0px;
-  margin: 5px;
-}
-
-#left-components {
+input {
+  border-style: none;
   padding: 10px;
-	display: flex;
-	padding: 0px;
-	flex-direction: column;
-	height: 100%;
-	border-right: 7px groove #2392d9;
+  background-color: #e0f3ff;
+  transition: background-color 100ms;
+  box-sizing: border-box;
+}
+
+input:hover {
+  background-color: #fcfeff;
+  transition: background-color 100ms;
+}
+
+input:focus {
+  background-color: #fcfeff;
+  transition: background-color 100ms;
+}
+
+.btn {
+	background-color: #56b0ea;
+	border-width: 2px;
+	border-color: #bfe6ff;
+	border-style: solid;
+	cursor: pointer;
+	text-align: center;
+}
+
+.btn:hover:not([disabled=true]) {
+	background-color: #42a9ec;
+	border-color: #9bd9ff;
+}
+
+.btn:active:not([disabled=true]) {
+	background-color: #9ccbea;
+	border-color: #7bbeea;
+}
+
+.btn[disabled=true] {
+	background-color: #dfdfdf;
+	color: #b4b4b4;
+	border-color: #d2d2d2;
+	cursor: default;
+}
+
+.secondary-color {
+  background-color: var(--secondary-bg-color);
+  color: var(--secondary-color);
+}
+
+.secondary-color .btn {
+	background-color: #0e4466;
+	border-color: #51636d;
+}
+
+.secondary-color .btn:hover:not([disabled=true]) {
+	background-color: #04578f;
+	border-color: #4b7b99;
+}
+
+.secondary-color .btn:active:not([disabled=true]) {
+	background-color: #7f909b;
+	border-color: #cfdee9;
+}
+
+.secondary-color .btn[disabled=true] {
+	background-color: #3f4247;
+	color: #b4b4b4;
+	border-color: #4d4d4d;
+	cursor: default;
+}
+
+ul {
+	margin: 0px;
 }

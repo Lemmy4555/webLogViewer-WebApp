@@ -1,0 +1,26 @@
+main {
+  float: left;
+  height: 45px;
+  overflow: hidden;
+  --input-height: 27px;
+}
+
+input {
+  height: var(--input-height);
+  width: 100px;
+  text-overflow: ellipsis;
+}
+
+main > div {
+  height: 100%;
+  display: flex;
+}
+
+main > div > div:first-child {
+  height: var(--input-height);
+  line-height: var(--input-height);
+}
+
+.error {
+  font-size: 0.7em;
+}

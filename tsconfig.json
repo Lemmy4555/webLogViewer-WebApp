@@ -1,0 +1,58 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "noEmit": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "strictNullChecks": false,
+    "lib": [
+      "dom",
+      "es6"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@angular/*": ["node_modules/@angular/*"],
+      "Components/*": ["./src/app/shared/components/*"],
+      "Utils/*": ["./src/app/shared/utils/*"],
+      "Constants/*": ["./src/app/shared/constants/*"],
+      "Logger/*": ["./src/app/shared/logger/*"],
+      "Handlers/*": ["./src/app/shared/handlers/*"],
+      "Services/*": ["./src/app/shared/services/*"],
+      "Helpers/*": ["./src/app/shared/helpers/*"],
+      "Models/*": ["./src/app/shared/models/*"],
+      "Jobs/*": ["./src/app/shared/jobs/*"],
+      "Images/*": ["./src/assets/img/*"]
+    },
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "hammerjs",
+      "jasmine",
+      "node",
+      "source-map",
+      "uglify-js",
+      "webpack",
+      "jquery"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true,
+    "useWebpackText": true
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}

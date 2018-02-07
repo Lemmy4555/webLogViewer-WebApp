@@ -1,0 +1,14 @@
+main {
+  background-color: #bfe6ff;
+  padding: 10px;
+}
+
+main span {
+  color: var(--error-color);
+  display: block;
+  padding: 5px;
+}
+
+input {
+  width: 100%;
+}

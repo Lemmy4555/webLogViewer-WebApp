@@ -1,0 +1,9 @@
+main > div {
+  border-left: 6px solid rgba(0, 0, 0, 0);
+  border-right: 6px solid transparent;
+  border-bottom: 8px solid #000;
+  background-color: rgba(0, 0, 0, 0);
+  float: left;
+  padding: 0px;
+  margin: 5px;
+}
